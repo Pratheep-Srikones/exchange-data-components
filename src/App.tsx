@@ -1,28 +1,37 @@
-import { EntityChart } from "./components/PageComponents/EntityChart";
-import LcChart from "./components/PageComponents/LcChart";
-import { McChart } from "./components/PageComponents/McChart";
-import RatioTable from "./components/PageComponents/RatioTable";
+import FunnelChart, {
+  FunnelChartProps,
+} from "./components/PageComponents/FunnelChart";
 
+// Example usage
 const App = () => {
+  const funnelData: FunnelChartProps = {
+    stages: [
+      {
+        stage: "Applied",
+        value: 22400,
+      },
+      {
+        stage: "Accepted",
+        value: 2253,
+      },
+      {
+        stage: "Approved",
+        value: 1123,
+      },
+      {
+        stage: "Realized",
+        value: 854,
+      },
+      {
+        stage: "Completed",
+        value: 318,
+      },
+    ],
+  };
+
   return (
-    <div>
-      <div className="flex p-4 gap-2">
-        <div className="flex-1">
-          <EntityChart />
-        </div>
-        <div className="flex-1">
-          <McChart />
-        </div>
-      </div>
-      {/* Ensuring LcChart and RatioTable have equal heights */}
-      <div className="flex p-4 gap-2 h-[500px]">
-        <div className="flex-1 h-full">
-          <LcChart />
-        </div>
-        <div className="flex-1 h-full overflow-y-auto bg-white shadow-lg border border-black/15 rounded-lg">
-          <RatioTable />
-        </div>
-      </div>
+    <div className="p-6 bg-gray-100 min-h-screen flex items-center justify-center">
+      <FunnelChart stages={funnelData.stages} />
     </div>
   );
 };
